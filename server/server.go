@@ -1,11 +1,12 @@
 package main
 
 import (
-	pb "github.com/zzell/pingpong/proto"
-	"google.golang.org/grpc"
 	"io"
 	"log"
 	"net"
+
+	pb "github.com/zzell/pingpong/proto"
+	"google.golang.org/grpc"
 )
 
 const port = ":8040"

@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	pb "github.com/zzell/pingpong/proto"
-	"google.golang.org/grpc"
 	"io"
 	"log"
 	"math/rand"
 	"time"
+
+	pb "github.com/zzell/pingpong/proto"
+	"google.golang.org/grpc"
 )
 
 const (
@@ -29,7 +30,7 @@ func main() {
 	}
 
 	// streaming read from db
-    pipe := dbRead()
+	pipe := dbRead()
 	go func() {
 		defer func() {
 			err := stream.CloseSend()
@@ -53,7 +54,7 @@ func main() {
 		}
 	}()
 
-    done := make(chan bool)
+	done := make(chan bool)
 	go func() {
 		for {
 			pong, err := stream.Recv()
@@ -71,13 +72,13 @@ func main() {
 		}
 	}()
 
-    <-done
+	<-done
 }
 
 func dbRead() chan []byte {
 	var ch = make(chan []byte)
 
-    // dbRead from db
+	// dbRead from db
 	go func() {
 		defer close(ch)
 		for i := 0; i <= 10; i++ {
