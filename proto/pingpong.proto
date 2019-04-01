@@ -1,0 +1,16 @@
+// protoc --go_out=plugins=grpc:. pingpong.proto
+syntax = "proto3";
+package pingpong;
+
+service Pingpong {
+  rpc Play (stream Ping) returns (stream Pong) {}
+}
+
+message Ping {
+  string msg = 1;
+  bytes data = 2;
+}
+
+message Pong {
+  string msg = 1;
+}
